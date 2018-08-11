@@ -1,12 +1,24 @@
 package predictor;
 
+/**
+ * A predictor class that checks the Pico y Placa rules and verifies if the car can transit
+ * safely or not.
+ */
 public class Predictor {
 
+	/**
+	 * Constructor class for the predictor class
+	 */
 	public Predictor() {
 	}
 
+	/**
+	 * Main method that checks wheter the car can transit or not based on Pico y Placa.
+	 * Takes an integer license plate, string date and Time object 
+	 */
 	public Boolean check(int plate, String date, Time time ){
 		int length = String.valueOf(plate).length();
+		// range of license plates between 5 to 3 based on research.
 		if (length > 5 || length < 3) {
 			throw new RuntimeException("Invalid plate number");
 		}
@@ -42,6 +54,10 @@ public class Predictor {
 		return result;
 	}
 
+	/**
+	 * Method that reduces the date to check wheter the date given fits the format and wheter
+	 * the date contains the day given. Takes a string date and day name. 
+	 */
 	public Boolean reduceDate(String date, String day)
 			throws InvalidDateException{
 		String dateToCheck = date.toLowerCase();
@@ -54,6 +70,10 @@ public class Predictor {
 		return date.toLowerCase().contains(day.toLowerCase());
 	}
 
+	/**
+	 * Method that checks wheter the car can transit based on the time of day.
+	 * Takes a Time object.
+	 */
 	public Boolean canCirculate(Time time) {
 		Boolean result = true;
 		int hourToCheck = time.getHours();
